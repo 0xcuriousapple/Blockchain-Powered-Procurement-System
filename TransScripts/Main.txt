@@ -1,0 +1,3 @@
+Welcome, This is Team Vision. We are going to see demonstration of the prototype we built-in the internal hackathon of our college.
+Firstly, we will see procurement that will describe how tender is allotted to the vendor.
+Then we will see how the item moves through the supply chain.

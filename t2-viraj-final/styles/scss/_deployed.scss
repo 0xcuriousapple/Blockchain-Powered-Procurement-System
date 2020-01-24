@@ -1,0 +1,29 @@
+.home {
+	.topbar {
+		background-color: #333;
+		height: 64px;
+		color:#fcfcfc;
+		text-align: center;
+		line-height: 64px;
+		font-family: 'Noto Sans', sans-serif;
+		font-size: 28px;
+	}
+	.content {
+		text-align: center;
+		padding: 12px 0;
+		.btn-wrapper {
+			padding: 12px 0;
+			button {
+				width: 300px;
+			}
+		}
+	}
+	.table {
+		text-align: center;
+		#tenders {
+			tr {
+				cursor: pointer;
+			}
+		}
+	}
+}

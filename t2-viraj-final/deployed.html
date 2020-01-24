@@ -1,0 +1,506 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GAIL</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+	<link href="styles/css/app.css" rel="stylesheet">
+	<script src="scripts/web3.js/web3.min.js"></script>
+
+	<script type="text/javascript">
+		console.log("12");
+
+		var fcontract_address = "0x350Ed05eE716870D60A814f5Fe1ebD1a3B3Cf70c";
+		var fcontract_abi = [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					}
+				],
+				"name": "createTender",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "deployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getDeployedTenders",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		];
+
+		var contract_abi = [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "finalizeBid",
+				"outputs": [],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getBidSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "getSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "desc",
+						"type": "string"
+					}
+				],
+				"name": "makeBid",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "verify",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "verifyManager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"name": "creator",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "complete",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "data",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getBidCount",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "hiddenBids",
+				"outputs": [
+					{
+						"name": "ID",
+						"type": "uint256"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "manager",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "status",
+				"outputs": [
+					{
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "winIndex",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "winner",
+				"outputs": [
+					{
+						"name": "bidder",
+						"type": "address"
+					},
+					{
+						"name": "bidAmount",
+						"type": "uint256"
+					},
+					{
+						"name": "bid",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		];
+		if (typeof web3 !== 'undefined') {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			console.log('not detected')
+			web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+		}
+
+		var fcontract_instance;
+		fcontract_instance = web3.eth.contract(fcontract_abi).at(fcontract_address);
+		console.log(fcontract_instance);
+	</script>
+</head>
+
+<body>
+	<div class="home">
+		<div class="topbar">
+			DEPLOYED TENDERS
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Sr. No.</th>
+					<th scope="col">Tenders</th>
+					<th scope="col">Description</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+			<tbody id="tenders">
+			</tbody>
+		</table>
+		<div class="content">
+			<div class="modal fade" id="tenderModal" tabindex="-1" role="dialog" aria-labelledby="tenderModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">BID TENDER</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="input-group mb-3">
+								<input id="bidAmount" type="text" class="form-control" placeholder="Bid Amount"
+									aria-label="Item ID" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group mb-3">
+								<input id="email" type="text" class="form-control" placeholder="Email ID"
+									aria-label="Item ID" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group mb-3">
+								<textarea id="descp" type="text" class="form-control" placeholder="Description"
+									aria-label="Username" aria-describedby="basic-addon1"></textarea>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal"
+								onclick="makeBid()">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+<script>
+	
+	var index;
+
+	console.log("12");
+	var person = { addr: "0x8F0e5dfbC5E294FeD3a5C3DB473a5344523ec239", status: true };
+	var tenders = [];
+	fcontract_instance.getDeployedTenders(function (error, result) {
+
+
+		if (error) {
+			console.log("sd");
+			console.error(error);
+		}
+		else {
+			console.log(result, "result");
+			result.forEach(e => {
+				var res = e;
+				console.log(e);
+				let p = {addr:e};
+				tenders.push(p)
+			});
+			console.log(tenders)
+			var descpt = ['Petrol','Steel pipe','Gasoline','Crude oil','Diesel', 'Natural Gas', 'Aluminium Pipe'];
+			for(var j=0;j<7;j++) {
+				tenders[j].descp = descpt[j];
+			}
+			console.log(tenders)
+			// for (var i = 0; i < result.length; i++) {
+			// 	var res = result[i];
+			// 	console.log(result[i]);
+			// 	person.addr = result[i];
+			// 	var contract_address = result[i];
+			// 	let contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+
+			// 	contract_instance.status(function (error, result) {
+			// 		console.log(result);
+			// 		if (error) {
+			// 			console.error(error);
+			// 		} else {
+			// 			person.status = !result;
+			// 		}
+			// 	});
+			// 	this.tenders.push(person);
+			// 	console.log(person, tenders);
+			// }
+		}
+
+		populateTable();
+	})
+
+	// const tenders = [
+	// 	{ addr: "0x8F0e5dfbC5E294FeD3a5C3DB473a5344523ec239", status: true },
+	// 	{ addr: "0x6a0e5dfbC5E294EeC3a5C3DB473a5344523ec769", status: false }
+	// ];
+	function populateTable() {
+		console.log(tenders)
+		var tendersBody = document.getElementById("tenders");
+		for (var i = 0; i < tenders.length; i++) {
+
+			tendersBody.innerHTML += tenders[i].status ? "<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'><td>" + (i + 1).toString() + "</td><td>" + tenders[i].addr + "</td><td>" + tenders[i].descp + "</td><td><i style='font-weight:500; font-size:22px;' class='fas fa-check-circle fa-5x'></i></td></tr>" : "<tr data-toggle='modal' data-target='#tenderModal' onclick='tenderClicked(" + i.toString() + ")'><td>" + (i + 1).toString() + "</td><td>" + tenders[i].addr + "</td><td>" + tenders[i].descp + "</td><td><i style='font-weight:500; font-size:22px;' class='fas fa-times-circle fa-5x'></i></td></tr>";
+		}
+	}
+	function tenderClicked(i) {
+		console.log(i);
+		index = i;
+	}
+	function makeBid() {
+		var bidAmount = document.getElementById("bidAmount").value;
+		var descp = document.getElementById("descp").value;
+		contract_address = tenders[index].addr;
+		contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+
+		contract_instance.makeBid(bidAmount, descp, { from: web3.eth.accounts[0] }, function (error, result) {
+			if (error) {
+
+				console.error(error);
+			} else {
+				var txHash = result;
+				console.log(txHash);
+				callWhenMined(txHash, mined);
+			}
+		});
+
+		function mined() {
+			console.log("Mined");
+		}
+		function callWhenMined(txHash, callback) {
+			web3.eth.getTransactionReceipt(txHash, function (error, rcpt) {
+				if (error) {
+					console.error(error);
+				} else {
+					if (rcpt == null) {
+						setTimeout(function () {
+							callWhenMined(txHash, callback);
+						}, 500);
+					} else {
+						callback();
+					}
+				}
+			})
+		}
+		console.log(bidAmount, descp, tenders[index].addr);
+		document.getElementById("bidAmount").value = "";
+		document.getElementById("descp").value = "";
+	}
+</script>
+<script src="https://kit.fontawesome.com/148a1c7248.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<script src="scripts/custom/index.js"></script>
+<script src="scripts/jquery/jquery.min.js"></script>
+
+</html>

@@ -1,0 +1,11 @@
+
+Let's see how our procurement portal works. Let's start with creating tender. GAIL manager creates the tender by selecting an option to create tender. Here He or she enters the technical requirements. This will require a confirmation from the Gail manager as its mining state.
+Once the tender is created. Bidders can see tenders by going to Get deployed tenders. Here Tenders are identified by their contract address. There is a description and the status of weather tender is active.
+Bidders can bid on tender by selecting any active tender. The bidder has to enter his bidding amount, email id and his bid in the description.
+Once he submits, Again there will be mining request.
+
+Now Gail manager can see which bids are made on any particular tender by option see bids made.
+The Gail manager has to enter the tender address.
+This will show the bids made on that tender.
+He can finalize bid from listed bids by clicking anyone.
+From here Journey of Supply Chain Starts.

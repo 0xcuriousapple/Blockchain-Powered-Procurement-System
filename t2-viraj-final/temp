@@ -1,0 +1,47 @@
+let promise = new Promise(function(resolve, reject) {
+
+
+            contract_instance.getMyNumber(
+            function(error,result)
+            {
+                console.log(result);
+                if (error) {
+                    console.error(error);
+                    reject("Error")
+                }
+                else
+                {
+                    console.log(result.c[0])
+                    currentNumber=result.c[0];
+                    currentNumber++;
+                    order = true;
+                    console.log(currentNumber);
+                    resolve("done!")
+                }
+            }
+            );
+            });
+            //console.log(currentNumber);
+
+
+
+
+            //web3.personal.unlockAccount(web3.eth.accounts[0],function(error,result){if(error)console.log("df")});
+            promise.then(
+            function(result){
+            contract_instance.setMyNumber(currentNumber, {from: web3.eth.accounts[0]}, function (error, result) {
+                if (error) {
+
+                    console.error(error);
+                } else {
+                    var txHash = result;
+                    console.log(txHash);
+                    callWhenMined(txHash, getCounter);
+                }
+            });},
+            function(reject)
+            {
+
+            }
+            );
+        }

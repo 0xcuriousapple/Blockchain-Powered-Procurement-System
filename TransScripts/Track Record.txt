@@ -1,0 +1,16 @@
+Let's see how we can track the item and how the state of the item is stored on the blockchain. Let's enter the item id of the already delivered item. 
+The current holder shows the wallet address of the person who owns the item now, in this case, it is the GAIL manager.
+Time or arrival is the time when the item arrived at this stage.
+Update state we saw while ago, updates this time of arrival.
+The time of shipping is the time when the item is shipped from this stage, It is zero in this case as the GAIL manager is the final stop.
+Ship next functionality we saw, we had to enter the next stop address, that's recorded in the next expected stop, Again it's null in this case.
+The vendor contains the vendor address.
+The quotation is a winning bid.
+a row of Delivered signifies weather the item is delivered.
+
+We can also see the complete path under get record.
+Here each step Signifies, the state item has gone through.
+As you can see in this case there is Vendor, One Intermediary and GAIL at last.
+This Complete path is recorded on the blockchain only, hence it is immutable, transparent, decentralized, and distributed. 
+
+Thank you
