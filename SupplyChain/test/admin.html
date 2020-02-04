@@ -1,0 +1,946 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAIL</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles/css/app.css" rel="stylesheet" />
+    <script src="scripts/web3.js/web3.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script src="scripts/custom/qrcode.js"></script>
+    <script src="scripts/jquery/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .fa {
+        margin-right: 8px;
+      }
+    </style>
+
+    <script type="text/javascript" src="./email/index.js"></script>
+
+    <script type="text/javascript">
+      var contract_address = "0x4EDB06f00FcA1CCCe632d769A9d936294D9F949C";
+      var contract_abi = [
+        {
+          inputs: [],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "constructor"
+        },
+        {
+          payable: true,
+          stateMutability: "payable",
+          type: "fallback"
+        },
+        {
+          constant: true,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256"
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256"
+            }
+          ],
+          name: "History",
+          outputs: [
+            {
+              internalType: "address",
+              name: "holder",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "timestampArrived",
+              type: "uint256"
+            },
+            {
+              internalType: "uint256",
+              name: "timestampShipped",
+              type: "uint256"
+            },
+            {
+              internalType: "address",
+              name: "nextStop",
+              type: "address"
+            },
+            {
+              internalType: "address payable",
+              name: "vendor",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "quotation",
+              type: "uint256"
+            },
+            {
+              internalType: "bool",
+              name: "Status",
+              type: "bool"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: true,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256"
+            }
+          ],
+          name: "PresentConditionOfItem",
+          outputs: [
+            {
+              internalType: "address",
+              name: "holder",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "timestampArrived",
+              type: "uint256"
+            },
+            {
+              internalType: "uint256",
+              name: "timestampShipped",
+              type: "uint256"
+            },
+            {
+              internalType: "address",
+              name: "nextStop",
+              type: "address"
+            },
+            {
+              internalType: "address payable",
+              name: "vendor",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "quotation",
+              type: "uint256"
+            },
+            {
+              internalType: "bool",
+              name: "Status",
+              type: "bool"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: false,
+          inputs: [
+            {
+              internalType: "address",
+              name: "_newholder",
+              type: "address"
+            }
+          ],
+          name: "addHolder",
+          outputs: [],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "function"
+        },
+        {
+          constant: false,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_itemid",
+              type: "uint256"
+            },
+            {
+              internalType: "address payable",
+              name: "_vendor",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "_quotation",
+              type: "uint256"
+            }
+          ],
+          name: "allotItemToVendor",
+          outputs: [],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "function"
+        },
+        {
+          constant: false,
+          inputs: [
+            {
+              internalType: "address payable",
+              name: "_to",
+              type: "address"
+            }
+          ],
+          name: "destroySmartContract",
+          outputs: [],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "function"
+        },
+        {
+          constant: true,
+          inputs: [],
+          name: "getBalance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: true,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_itemid",
+              type: "uint256"
+            }
+          ],
+          name: "getHistory",
+          outputs: [
+            {
+              internalType: "address[]",
+              name: "",
+              type: "address[]"
+            },
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]"
+            },
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]"
+            },
+            {
+              internalType: "address[]",
+              name: "",
+              type: "address[]"
+            },
+            {
+              internalType: "address",
+              name: "payble",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256"
+            },
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: true,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_itemid",
+              type: "uint256"
+            }
+          ],
+          name: "getPresentStatus",
+          outputs: [
+            {
+              internalType: "address",
+              name: "_holder",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "_timestampArrived",
+              type: "uint256"
+            },
+            {
+              internalType: "uint256",
+              name: "_timestampShipped",
+              type: "uint256"
+            },
+            {
+              internalType: "address",
+              name: "_nextStop",
+              type: "address"
+            },
+            {
+              internalType: "address payable",
+              name: "_vendor",
+              type: "address"
+            },
+            {
+              internalType: "uint256",
+              name: "_quotation",
+              type: "uint256"
+            },
+            {
+              internalType: "bool",
+              name: "_status",
+              type: "bool"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: true,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256"
+            }
+          ],
+          name: "listedItems",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: true,
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address"
+            }
+          ],
+          name: "listedholders",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool"
+            }
+          ],
+          payable: false,
+          stateMutability: "view",
+          type: "function"
+        },
+        {
+          constant: false,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_itemid",
+              type: "uint256"
+            },
+            {
+              internalType: "address",
+              name: "_nextStop",
+              type: "address"
+            }
+          ],
+          name: "shipNext",
+          outputs: [],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "function"
+        },
+        {
+          constant: false,
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_itemid",
+              type: "uint256"
+            }
+          ],
+          name: "updateStateOfArrivedItem",
+          outputs: [],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "function"
+        }
+      ];
+
+      if (typeof web3 !== "undefined") {
+        web3 = new Web3(web3.currentProvider);
+      } else {
+        // set the provider you want from Web3.providers
+        console.log("not detected");
+        web3 = new Web3(
+          new Web3.providers.HttpProvider("http://localhost:7545")
+        );
+      }
+
+      var contract_instance;
+      contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+      console.log(contract_instance);
+
+      function Allot() {
+        console.log("allot function");
+        var def = '<i class="fa fa-circle-o-notch fa-spin"></i>Mining';
+        document.getElementById("submit-allot").innerHTML = def;
+        document.getElementById("inputsItemid").disabled = true;
+        document.getElementById("inputsVendoraddr").disabled = true;
+        document.getElementById("inputsQuotation").disabled = true;
+        document.getElementById("inputEmailAddress").disabled = true;
+
+        var _itemid = document.getElementById("inputsItemid").value;
+        var _vendor = document.getElementById("inputsVendoraddr").value;
+        var _quotation = document.getElementById("inputsQuotation").value;
+        var _email = document.getElementById("inputEmailAddress").value;
+
+        console.log(_itemid);
+        console.log(_vendor);
+        console.log(_quotation);
+        console.log(_email);
+
+        console.log(web3.eth.accounts[0]);
+
+        contract_instance.allotItemToVendor(
+          _itemid,
+          _vendor,
+          _quotation,
+          { from: web3.eth.accounts[0] },
+          function(error, result) {
+            if (error) {
+              console.error(error);
+            } else {
+              var txHash = result;
+
+              callWhenMined(txHash, mined);
+              sendEmail(_email);
+              console.log(txHash);
+            }
+          }
+        );
+        // $("#tender-content").html(htmldata);
+      }
+      function AddHolder() {
+        var _newholder = document.getElementById("intermediaryAddress").value;
+        console.log("add holder");
+        console.log(_newholder);
+        console.log(web3.eth.accounts[0]);
+        contract_instance.addHolder(
+          _newholder,
+          { from: web3.eth.accounts[0] },
+          function(error, result) {
+            if (error) {
+              console.error(error);
+            } else {
+              var txHash = result;
+              console.log(txHash);
+              callWhenMined(txHash, mined);
+            }
+          }
+        );
+        var def = '<i class="fa fa-circle-o-notch fa-spin"></i>Mining';
+        document.getElementById("submit-addholder").innerHTML = def;
+        document.getElementById("intermediaryAddress").disabled = true;
+      }
+      function addActors() {
+          var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+          var actor_url= "http://siiidd.pythonanywhere.com/add_actors"
+          xmlhttp.open("POST", actor_url, true);
+          xmlhttp.setRequestHeader("Content-Type", "application/json");
+
+          xmlhttp.onreadystatechange = function () {
+              if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                  var json = JSON.parse(xmlhttp.responseText);
+                  console.log(json.name + ", " + json.address);
+              }
+          };
+          name = document.getElementById('userName').value;
+          address = document.getElementById('userAddress').value;
+          console.log(name, address);
+          var data = JSON.stringify({ "Name": name, "Address": address});
+          console.log(data);
+          
+          xmlhttp.send(data);
+      }
+      function getBalance() {
+        contract_instance.getBalance(function(error, result) {
+          console.log(result);
+          if (error) {
+            console.error(error);
+          } else {
+            document.getElementById("balance").innerText = result;
+          }
+        });
+      }
+
+      function mined() {
+        console.log("Mined1");
+        var def = '<i class="fa fa-thumbs-up" aria-hidden="true"></i>Done';
+        document.getElementsByClassName("submit")[0].innerHTML = def;
+        document.getElementsByClassName("submit")[0].style.backgroundColor =
+          "green";
+        document.getElementsByClassName("submit")[1].innerHTML = def;
+        document.getElementsByClassName("submit")[1].style.backgroundColor =
+          "green";
+
+        console.log("Mined2");
+      }
+      function Destroy() {
+        var _address = document.getElementById("destroyAddress").value;
+        contract_instance.destroySmartContract(
+          _address,
+          { from: web3.eth.accounts[0] },
+          function(error, result) {
+            if (error) {
+              console.error(error);
+            } else {
+              var txHash = result;
+              console.log(txHash);
+              callWhenMined(txHash, mined);
+            }
+          }
+        );
+      }
+      function callWhenMined(txHash, callback) {
+        web3.eth.getTransactionReceipt(txHash, function(error, rcpt) {
+          if (error) {
+            console.error(error);
+          } else {
+            if (rcpt == null) {
+              setTimeout(function() {
+                callWhenMined(txHash, callback);
+              }, 500);
+            } else {
+              callback();
+            }
+          }
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="home">
+      <div class="topbar">
+        ADMIN
+      </div>
+      <div class="content">
+        <div class="btn-wrapper">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#tenderModal"
+          >
+            Allot Tender
+          </button>
+        </div>
+        <div class="btn-wrapper">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#intermediaryModal"
+          >
+            Add Intermediary
+          </button>
+        </div>
+        <div class="btn-wrapper">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#balanceModal"
+          >
+            Get Balance
+          </button>
+        </div>
+        <div class="btn-wrapper">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#destroyModal"
+          >
+            Destroy
+          </button>
+        </div>
+        <div class="btn-wrapper">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#addUsers"
+          >
+            Add Users
+          </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="tenderModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="tenderModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div id="tender-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">INPUTS</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="input-group mb-3">
+                  <input
+                    id="inputsItemid"
+                    type="text"
+                    class="form-control"
+                    placeholder="Item ID"
+                    aria-label="Item ID"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    id="inputsVendoraddr"
+                    type="text"
+                    class="form-control"
+                    placeholder="Vendor Address"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    value=""
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    id="inputEmailAddress"
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    id="inputsQuotation"
+                    type="text"
+                    class="form-control"
+                    placeholder="Quotation"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary submit"
+                  id="submit-allot"
+                  onclick="Allot()"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            <!-- <div id="loading">
+              <img src="/load.gif" id="img" style="display:none" />
+            </div>
+            <div id="success">
+              <p style="display:none;">Block Mined successfully!!!!!</p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="intermediaryModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="intermediaryModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                ADD INTERMIDIARY
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <input
+                  id="intermediaryAddress"
+                  type="text"
+                  class="form-control"
+                  placeholder="Address"
+                  aria-label="Item ID"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                id="submit-addholder"
+                class="btn btn-primary submit"
+                onclick="AddHolder()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="balanceModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="balanceModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">BALANCE</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Your Balance is (In Wei) : <span id="balance"></span>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="getBalance()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="destroyModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="destroyModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">DESTROY</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <input
+                  id="destroyAddress"
+                  type="text"
+                  class="form-control"
+                  placeholder="Address"
+                  aria-label="Item ID"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+            <div class="modal-body">
+              Once destroyed, All functionalities of smart contract will be
+              destroyed, but previous mined blocks are not erased.
+              <br />
+              Use this only when security of smart contract is compromised. All
+              funds remaining in the contract account will be transferred to
+              account aboves.
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="destroy()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="addUsers"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="intermediaryModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                ADD USERS
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <input
+                  id="userName"
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  aria-label="Item ID"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  id="userAddress"
+                  type="text"
+                  class="form-control"
+                  placeholder="Address"
+                  aria-label="Item ID"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                id="submit-addholder"
+                class="btn btn-primary submit"
+                onclick="addActors()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script src="scripts/custom/index.js"></script>
+  <script src="scripts/jquery/jquery.min.js"></script>
+</html>

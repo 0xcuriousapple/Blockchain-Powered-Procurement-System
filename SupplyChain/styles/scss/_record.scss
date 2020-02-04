@@ -1,0 +1,140 @@
+.record {
+  .topbar {
+    background-color: #333;
+    height: 64px;
+    color: #fcfcfc;
+    text-align: center;
+    line-height: 64px;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 28px;
+  }
+  .content {
+    // text-align: center;
+		padding: 12px 0;
+		.form {
+			text-align: center	;
+		}
+    .btn-wrapper {
+      padding: 12px 0;
+      button {
+        width: 300px;
+      }
+    }
+  }
+  .card-wrapper {
+    overflow-x: auto;
+    margin: 2rem;
+    .cards {
+      display: flex;
+      position: absolute;
+    }
+    .start {
+      background-color: #a0fca0;
+      height: 72px;
+      width: 72px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hr {
+      border-bottom: 5px solid #666;
+      z-index: -1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .record-list {
+    max-width: 700px;
+    margin: auto;
+    ol:before,
+    ol:after {
+      content: "";
+      background: #fff;
+      width: 5px;
+      height: 60px;
+      position: absolute;
+      z-index: 2;
+    }
+
+    ol:before {
+      margin: 0 0 0 -1px;
+    }
+
+    ol:after {
+      margin: -50px 0 0 -1px;
+    }
+
+    li {
+      border: 2px solid;
+      border-color: lightcoral !important;
+      margin: 0 0 -2px 0;
+      padding: 30px;
+      counter-increment: li;
+      position: relative;
+    }
+
+    li:nth-child(odd):before,
+    li:nth-child(even):before {
+      content: counter(li);
+      display: flex;
+      -ms-flex-pack: center !important;
+      justify-content: center !important;
+      -ms-flex-align: center !important;
+      align-items: center !important;
+
+      position: absolute;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      background-color: lightcoral;
+      color: white;
+      font-weight: bold;
+      z-index: 3;
+    }
+
+    li:nth-child(odd):before {
+      right: 100%;
+      margin-right: -20px;
+    }
+
+    li:nth-child(even):before {
+      left: 100%;
+      margin-left: -20px;
+    }
+
+    li:nth-child(odd) {
+      border-right: none;
+      border-left: 2px solid;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      margin-right: 30px;
+      padding-right: 0;
+    }
+
+    li:nth-child(even) {
+      border-left: none;
+      border-right: 2px solid;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin-left: 30px;
+      padding-left: 0;
+      text-align: right;
+    }
+
+    li:first-child {
+      border-top: none;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    li:last-child {
+      border-bottom: none;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  //-----TRIAL---//
+}

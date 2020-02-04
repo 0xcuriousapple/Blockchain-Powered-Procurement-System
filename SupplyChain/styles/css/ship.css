@@ -1,0 +1,10 @@
+.table-container {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.table {
+    width: 70%;
+    margin: 0 auto;
+    /* align-content: center; */
+}

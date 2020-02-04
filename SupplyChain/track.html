@@ -1,0 +1,533 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAIL</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+  <link href="styles/css/app.css" rel="stylesheet">
+  <script src="scripts/web3.js/web3.min.js"></script>
+
+  <script type="text/javascript">
+    var contract_address = "0x4EDB06f00FcA1CCCe632d769A9d936294D9F949C";
+    var contract_abi = [
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "fallback"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "History",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "holder",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestampArrived",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestampShipped",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "nextStop",
+				"type": "address"
+			},
+			{
+				"internalType": "address payable",
+				"name": "vendor",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quotation",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "Status",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "PresentConditionOfItem",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "holder",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestampArrived",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestampShipped",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "nextStop",
+				"type": "address"
+			},
+			{
+				"internalType": "address payable",
+				"name": "vendor",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quotation",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "Status",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newholder",
+				"type": "address"
+			}
+		],
+		"name": "addHolder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_itemid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address payable",
+				"name": "_vendor",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_quotation",
+				"type": "uint256"
+			}
+		],
+		"name": "allotItemToVendor",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "destroySmartContract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_itemid",
+				"type": "uint256"
+			}
+		],
+		"name": "getHistory",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			},
+			{
+				"internalType": "address",
+				"name": "payble",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_itemid",
+				"type": "uint256"
+			}
+		],
+		"name": "getPresentStatus",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "_holder",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_timestampArrived",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_timestampShipped",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_nextStop",
+				"type": "address"
+			},
+			{
+				"internalType": "address payable",
+				"name": "_vendor",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_quotation",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_status",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "listedItems",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "listedholders",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_itemid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_nextStop",
+				"type": "address"
+			}
+		],
+		"name": "shipNext",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_itemid",
+				"type": "uint256"
+			}
+		],
+		"name": "updateStateOfArrivedItem",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+
+    if (typeof web3 !== "undefined") {
+      web3 = new Web3(web3.currentProvider);
+    } else {
+      // set the provider you want from Web3.providers
+      console.log("not detected");
+      web3 = new Web3(
+        new Web3.providers.HttpProvider("http://localhost:7545")
+      );
+    }
+
+    var contract_instance;
+    contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+    console.log(contract_instance);
+    
+    function getPresentStatus()
+    {
+            var _itemid=document.getElementById("itemid").value;
+            console.log(_itemid);
+            contract_instance.getPresentStatus( _itemid, {from: web3.eth.accounts[0]}, function (error, result) {
+           
+                console.log(result);
+                if (error) {
+                    console.log("sd");
+                    console.error(error);
+                }
+                else
+                {
+                  document.getElementById("Holder").innerText = result[0];
+                  document.getElementById("AT").innerText=result[1].c[0];
+                  document.getElementById("ST").innerText=result[2].c[0];
+                  document.getElementById("NS").innerText = result[3];
+                  document.getElementById("V").innerText = result[4];
+                  document.getElementById("Q").innerText = result[5].c[0];
+                  document.getElementById("S").innerText = !result[6];
+                } 
+            }
+
+            )
+    }
+
+   
+
+
+  </script>
+
+</head>
+
+<body>
+  <div class="update">
+    <div class="topbar">
+        Track
+    </div>
+    <div class="content">
+      <input id="itemid" type=text size=16 placeholder="Item Id" class=item-id><br><br>
+      <button type='button' class="btn btn-primary"  data-toggle="modal"
+	  data-target="#trackModal" onclick="getPresentStatus()">SUBMIT</button>
+	</div>
+
+	<div
+	class="modal fade"
+	id="trackModal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="tenderModalLabel"
+	aria-hidden="true"
+  >
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">INPUTS</h5>
+		  
+		  <button
+			type="button"
+			class="close"
+			data-dismiss="modal"
+			aria-label="Close"
+		  >
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+						<table>
+								<tr>
+								  <td><span class="track-span"><b>Current Holder</b> </span></td>
+								  <td><span id="Holder"></span></td>
+								  
+								</tr>
+								<tr>
+								  <td><span  class="track-span"><b>Time of Arrival</b> </span></td>
+								  <td><span id="AT"></span></td>
+								</tr>
+								<tr>
+								  <td><span class="track-span"><b>Time of Shipping</b> </span></td>
+										<td><span id="ST"></span></span></td>
+								</tr>
+								<tr>
+								  <td><span class="track-span"><b>Next Expected Stop </b></span></td>
+									<td><span id="NS"></span></td>
+								</tr>
+								<tr>
+								  <td> <span class="track-span"><b>Vendor</b> </span></td>
+									<td><span id="V"></span></td>
+								</tr>
+								<tr>
+								  <td><span class="track-span"><b>Quotation </b></span></td>
+									<td><span id="Q"></span></td>
+								</tr>
+								<tr>
+									<td><span class="track-span"><b>Delivered? </b></span></td>
+										<td><span id="S"></span></td>
+								</tr>
+							  </table>
+				
+		</div>
+	  </div>
+	</div>
+  </div>
+  </div>
+  
+  </div>
+</body>
+
+<style>
+		table {
+		  font-family: arial, sans-serif;
+		  border-collapse: collapse;
+		  width: 50%;
+		  margin-left: -15px;
+		}
+		
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+		
+		tr:nth-child(even) {
+		  background-color: #dddddd;
+		}
+		</style>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="scripts/custom/index.js"></script>
+<script src="scripts/jquery/jquery.min.js"></script>
+
+</html>

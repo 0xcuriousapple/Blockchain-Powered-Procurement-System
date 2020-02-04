@@ -1,0 +1,479 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GAIL</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+	<link href="styles/css/app.css" rel="stylesheet">
+	<script src="scripts/web3.js/web3.min.js"></script>
+	<script src="scripts/jquery/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+	<div class="record">
+		<div class="topbar">
+			HISTORY
+		</div>
+		<!-- <img src="https://drive.google.com/thumbnail?id=1Jtd8WwDrAKWvlspnpXhwvPVk4L8RQdGd"/> -->
+		<div class="content">
+			<div class="form">
+				<input id="itemid" type=text size=16 placeholder="Item Id" class=item-id><br><br>
+				<button class="btn btn-primary" onclick="History()">SUBMIT</button>
+			</div>
+
+			<div class="record-list">
+				<div class="container">
+					<ol id="recordList" class="list-unstyled">
+						<li>
+							<h5>START</h5>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+<script>
+	// const obj = contract_instance;
+	// console.log("instance", obj);
+	// var ol = document.getElementById("recordList");
+	// ol.innerHTML += "<li></li>"
+</script>
+	<script type="text/javascript">
+		var contract_address = "0x4EDB06f00FcA1CCCe632d769A9d936294D9F949C";
+		var contract_abi = [
+			{
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "History",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestampArrived",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestampShipped",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "nextStop",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "vendor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quotation",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "Status",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "PresentConditionOfItem",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestampArrived",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestampShipped",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "nextStop",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "vendor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quotation",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "Status",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newholder",
+						"type": "address"
+					}
+				],
+				"name": "addHolder",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_itemid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_vendor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_quotation",
+						"type": "uint256"
+					}
+				],
+				"name": "allotItemToVendor",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "destroySmartContract",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_itemid",
+						"type": "uint256"
+					}
+				],
+				"name": "getHistory",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address",
+						"name": "payble",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_itemid",
+						"type": "uint256"
+					}
+				],
+				"name": "getPresentStatus",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_holder",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_timestampArrived",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_timestampShipped",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_nextStop",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_vendor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_quotation",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_status",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listedItems",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "listedholders",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_itemid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_nextStop",
+						"type": "address"
+					}
+				],
+				"name": "shipNext",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_itemid",
+						"type": "uint256"
+					}
+				],
+				"name": "updateStateOfArrivedItem",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		];
+
+		if (typeof web3 !== "undefined") {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			// set the provider you want from Web3.providers
+			console.log("not detected");
+			web3 = new Web3(
+				new Web3.providers.HttpProvider("http://localhost:7545")
+			);
+		}
+
+		var contract_instance;
+		contract_instance = web3.eth.contract(contract_abi).at(contract_address);
+		console.log(contract_instance);
+
+		function History() {
+			var _itemid = document.getElementById("itemid").value;
+			console.log(_itemid);
+			contract_instance.getHistory(_itemid, { from: web3.eth.accounts[0] }, function (error, result) {
+
+				if (error) {
+					console.error(error);
+				}
+				else {
+					console.log(result[1][0]["c"][0]);
+					console.log(result);
+					console.log(result[1].length);
+					for(var i=0;i<result[1].length;i++){
+						document.getElementById("recordList").innerHTML += "<li><p style='font-size:0.8rem'><b>Address: "+result[0][i]+"</b></p><p>Timestamp Arrived: "+result[1][i]["c"][0]+"</p><p>Timestamp Shipped: "+result[2][i]["c"][0]+"</p></li>";
+					}
+					if(result[6]) {
+						document.getElementById("recordList").innerHTML += "<li><h6><b>Not Delivered</b></h6></li>"
+					} 
+					else {
+						document.getElementById("recordList").innerHTML += "<li><h6><b>Delivered</b></h6></li>"
+					}
+				}
+			}
+
+			)
+		}
+
+// 0: address[]: 0x4B0897b0513fdC7C541B6d9D7E929C4e5364D2dB,0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C,0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c
+// 1: uint256[]: 1579199406,1579199483,1579199536
+// 2: uint256[]: 1579199457,1579199520,0
+// 3: address[]: 0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C,0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c,0x0000000000000000000000000000000000000000
+// 4: address: payble 0x4B0897b0513fdC7C541B6d9D7E929C4e5364D2dB
+// 5: uint256: 10
+// 6: bool: false
+
+
+	</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="scripts/custom/index.js"></script>
+<script src="scripts/jquery/jquery.min.js"></script>
+
+</html>

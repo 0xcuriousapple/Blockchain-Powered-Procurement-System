@@ -1,0 +1,49 @@
+.update {
+  .topbar {
+    background-color: #333;
+    height: 64px;
+    color: #fcfcfc;
+    text-align: center;
+    line-height: 64px;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 28px;
+  }
+  .content {
+    text-align: center;
+    padding: 32px 0;
+    .btn-wrapper {
+      padding: 12px 0;
+      button {
+        width: 300px;
+      }
+    }
+  }
+  input {
+    font-size: 14pt;
+  }
+  input,
+  label {
+    vertical-align: middle;
+  }
+  .qrcode-text {
+    padding-right: 1.7em;
+    margin-right: 0;
+  }
+  .qrcode-text-btn {
+    display: inline-block;
+    background: url(http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50%
+      no-repeat;
+    height: 1.4em;
+    width: 1.7em;
+    margin-left: -2.1em;
+    margin-top: 0.5em;
+    cursor: pointer;
+  }
+  .qrcode-text-btn > input[type="file"] {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+}

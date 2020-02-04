@@ -1,0 +1,79 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+  <title>GAIL</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+	<link href="styles/css/app.css" rel="stylesheet">
+	<link href="styles/css/ship.css" rel="stylesheet">
+	
+  <script src="scripts/web3.js/web3.min.js"></script>
+	
+	<!-- DataTables CSS -->
+	<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	
+	<!-- jQuery -->
+	<!-- <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script> -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	
+	<!-- DataTables -->
+	<!-- <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script> -->
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+	<!-- Custom -->
+	<script src="scripts/custom/qrcode.js"></script>
+	<script src="./scripts/custom/ship.js"></script>
+	<link
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+<script type="text/javascript" >
+
+    function addActors() {
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+        var actor_url= "http://siiidd.pythonanywhere.com/add_actors"
+        xmlhttp.open("POST", actor_url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var json = JSON.parse(xmlhttp.responseText);
+                console.log(json.name + ", " + json.address);
+            }
+        };
+        name = document.getElementById('name').value;
+        address = document.getElementById('address').value;
+        console.log(name, address);
+        var data = JSON.stringify({ "Name": name, "Address": address});
+        console.log(data);
+        
+        xmlhttp.send(data);
+    }
+</script>
+</head>
+<body>
+	<div class="update">
+		<div class="content">
+			<input type=text id='name' placeholder="Name" class=qrcode-text>
+			<input type="text" id='address' placeholder="Address"/>
+			<button class="btn btn-primary" id="submit-update" onclick="addActors()" style="margin-left: 47%;">SUBMIT</button>
+		</div>
+	</div>
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- <script src="scripts/jquery/jquery.min.js"></script> -->
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<!-- <script src="scripts/custom/ship.js"></script> -->
+</html>
