@@ -1,7 +1,10 @@
 # Visit
-Demo : https://www.youtube.com/watch?v=1Y5eyY-KKVw  <br/>
-Hosted on : https://sihvisionhome.000webhostapp.com <br/>
-### This project was built as a solution to problem statement in SIH2020
+Demo : [Click me](https://www.youtube.com/watch?v=1Y5eyY-KKVw)  <br/>
+To make it completely decentralized we have hosted the frontend on IPFS.
+But as IPFS is in its initial stages, the link takes too long to respond.
+So we also hosted it on central server "000webhostapp"
+To see the App in action [Click me](https://sihvisionhome.000webhostapp.com) <br/>
+### This project was built as a solution to problem statement in SIH2020 - Smart India Hackathon 2020
 ## Problem Statement BK225
 GAIL procures most of the raw materials, items, office supplies and services through public procurement portal based on tendering system. We need to develop a Blockchain secured system to control this procurement process. 
 As an example, 
