@@ -1,7 +1,7 @@
 # Visit
-Demo : https://www.youtube.com/watch?v=1Y5eyY-KKVw
+Demo : https://www.youtube.com/watch?v=1Y5eyY-KKVw  <br/>
 Hosted on : https://sihvisionhome.000webhostapp.com <br/>
-Presentation : https://docs.google.com/presentation/d/1n3UuMFQl5SmVwyZLPHwj6Itn8jocpkpsS4k2TASht_k/edit?usp=sharing <br/>
+Documentation : https://docs.google.com/presentation/d/1n3UuMFQl5SmVwyZLPHwj6Itn8jocpkpsS4k2TASht_k/edit?usp=sharing <br/>
 ### This project was built as a solution to problem statement in SIH2020
 ## Problem Statement BK225
 GAIL procures most of the raw materials, items, office supplies and services through public procurement portal based on tendering system. We need to develop a Blockchain secured system to control this procurement process. 
