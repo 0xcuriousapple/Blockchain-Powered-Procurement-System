@@ -2,8 +2,6 @@ theme: jekyll-theme-minimal
 title: Blockchain-Powered-Procurement-System
 author: Abhishek Vispute
 email: abhivispute33@gmail.com
-<head>
-{% raw %}{% seo %}{% endraw %}
-<meta name="google-site-verification" content="35znUrvR4YExdysvKnRDNYHQEOvqNC69kUF20QqVsR8" />
-</head>
+google-site-verification: "35znUrvR4YExdysvKnRDNYHQEOvqNC69kUF20QqVsR8"
+
 
