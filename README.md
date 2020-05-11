@@ -11,10 +11,10 @@ The implementation should use Open source technologies like Ethereum or equivale
 To make it completely decentralized we have hosted the frontend on IPFS.
 But as IPFS is in its initial stages, the link takes too long to respond.
 So we also hosted it on central server "000webhostapp"
-To see the App in action 
-[Procurement](https://sihvisionhome.000webhostapp.com) <br/>
-[Supplychain](https://sihteamvision.000webhostapp.com/) <br/>
-## Local Server
+To see the App in action </br>
+[Procurement](https://sihvisionhome.000webhostapp.com) </br>
+[Supplychain](https://sihteamvision.000webhostapp.com/) </br>
+## Instructions for Developer
 clone this repo
 there are two folders, one is procurement another 
 ## Our Approach
