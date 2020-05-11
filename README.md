@@ -20,10 +20,10 @@ To see the App in action <br />
   * Go through [Demo](https://www.youtube.com/watch?v=1Y5eyY-KKVw), understand what we have built 
   * Read [documention](https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Documentation.pdf)
 * Running this repo on your local server
-  * We have divided the functionalities in two different folders, i.e. Procurement and Supply chain<br />
+  * We have divided the functionalities in two different packages, i.e. Procurement and Supply chain<br />
     *(Note : Procurement is only about how company publishes tender, vendors make bid and company allots that tender while supply chain is about  how item moves)* 
-  * To run any of the folder, you have to start HTTP server<br />
-  there are many ways to do this, but we used python for that
+  * To run any of the package, you have to start HTTP server in that package<br />
+  there are many ways to do this, but we used to do it by python.
   * Example :
   Suppose you are in our repo, and you have to start Procurement server<br />
   cd Procurement<br />
@@ -36,7 +36,8 @@ To see the App in action <br />
   * The smart contracts are deployed on ropsten test network
   * To access the App's functionalities you will need coins. Get free coins from [faucet](https://faucet.ropsten.be/)
   * If you want to see smart contracts for reference, I have added folder of smart contracts in repo, but it doesnt have any connection with project. I deployed smart contart using remix on test network and called it by address using web3.js.
- ### Advice If you are building your own dApp
+
+### Advice If you are building your own dApp
  *  For any developer, remembering syntax is cumbersome Use Skelton solidity code snippets of various concepts [Click me](https://github.com/abhishekvispute/SolidityCodeSnippets)
  * Use truffle as a framework if possible, it makes development/testing/deployment easy
  * Ethereum takes time, for tx to get finalized even for test network (pow consensus). Use different blockchain as backend if possible.
