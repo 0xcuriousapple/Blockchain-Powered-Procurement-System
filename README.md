@@ -43,5 +43,5 @@ To see the App in action <br />
  * Ethereum takes time, for tx to get finalized even for test network (pow consensus). Use different blockchain as backend if possible.
  See Quorum or  hyperledger fabric.
  * If you are intrested in deployement of app on IPFS, [See this](https://medium.com/ethereum-developers/the-ultimate-end-to-end-tutorial-to-create-and-deploy-a-fully-descentralized-dapp-in-ethereum-18f0cf6d7e0e)
-
- ### If you have any queries: Mail me [abhivispute33@gmail.com]
+ 
+### If you have any queries: Mail me [abhivispute33@gmail.com]
