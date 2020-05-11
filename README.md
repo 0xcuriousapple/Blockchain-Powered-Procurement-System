@@ -36,7 +36,7 @@ To see the App in action </br>
   * To access the App's functionalities you will need coins. Get free coins from [faucet](https://faucet.ropsten.be/)
   * If you want to see smart contracts for reference, I have added folder of smart contracts in repo, but it doesnt have any connection with project. I deployed smart contart using remix on test network and called it by address using web3.js.
  ### Advice If you are building your own dApp
- *  For any developer, remembering syntax is cumbersome Use Skelton solidity codes snippets of various concepts [Click me](https://github.com/abhishekvispute/SolidityCodeSnippets)
+ *  For any developer, remembering syntax is cumbersome Use Skelton solidity code snippets of various concepts [Click me](https://github.com/abhishekvispute/SolidityCodeSnippets)
  * Use truffle as a framework if possible, it makes development/testing/deployment easy
  * Ethereum takes time, for tx to get finalized even for test network (pow consensus). Use different blockchain as backend if possible.
  See Quorum or  hyperledger fabric.
