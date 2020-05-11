@@ -15,20 +15,21 @@ To see the App in action </br>
 [Procurement](https://sihvisionhome.000webhostapp.com) </br>
 [Supplychain](https://sihteamvision.000webhostapp.com/) </br>
 ## Instructions for Developer
-clone this repo
-there are two folders, one is procurement another 
-## Our Approach
-**Functional**</br>
-Supply Chain :</br>
-Blockchain maintains state of each item in supply chain. Complete  Supply chain is maintained/accessed/updated through Ethereum only.</br>
-Procurement :</br>
-Tenders are created, allotted on public network only. Bidders can bid with their bid and quotation.</br>
-
-**Technical**</br>
-dApp access ethereum node through infura for updating/accessing state of eth. Client side is hosted on IPFS, to make it completely decentralized application.</br>
-
-## Use Case Diagram
-![UseCase](https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Usecase.png)
-
-## Technology Stack
-<img width="500" alt="stack" src="https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Technology%20Stack.png">
+* Understanding
+  * Go through [Demo](https://www.youtube.com/watch?v=1Y5eyY-KKVw), understand what we have built 
+  * Read [documention](https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Documentation.pdf)
+* Running this repo on your local server
+  * We have divided the functionalities in two different folders, i.e. Procurement and Supply chain</br>
+    *(Note : Procurement is only about how company publishes tender, vendors make bid and company allots that tender while supply chain is about  how item moves)* 
+  * To run any of the folder, you have to start HTTP server</br>
+  there are many ways to do this, but we used python for that
+  * Example :
+  Suppose you are in our repo, and you have to start Procurement server</br>
+  cd Procurement</br>
+  python -m SimpleHTTPServer 1337</br>
+  Visit localhost:1337 on your browser
+  * Remember you need MetaMask installed on your browser</br>
+  Metamask doesn't connect with the site till you not allow it.</br>
+  For this go to Settings > Connections > Addsite (localhost) > connect </br>
+  * The smart contracts are deployed on ropsten test network, get free coins from [faucet](https://faucet.ropsten.be/)
+  * Links to s
