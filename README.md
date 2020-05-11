@@ -22,4 +22,4 @@ dApp access ethereum node through infura for updating/accessing state of eth. Cl
 ![UseCase](https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Usecase.png)
 
 ## Technology Stack
-![Stack](https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Technology%20Stack.png)
+<img width="500" alt="stack" src="https://github.com/abhishekvispute/Blockchain-Powered-Procurement-System/blob/master/Technology%20Stack.png">
