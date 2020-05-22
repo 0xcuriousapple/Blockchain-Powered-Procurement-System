@@ -40,8 +40,8 @@ To see the App in action <br />
 ### Advice If you are building your own dApp
  *  For any developer, remembering syntax is cumbersome Use Skelton solidity code snippets of various concepts [Click me](https://github.com/abhishekvispute/SolidityCodeSnippets)
  * Use truffle as a framework if possible, it makes development/testing/deployment easy
- * Ethereum takes time, for tx to get finalized even for test network (pow consensus). Use different blockchain as backend if possible.
- See Quorum or  hyperledger fabric.
+ * Ethereum takes time, for tx to get finalized even for test network as its public blockchain. Dont use public blockchain, if the main purpose of your DApp is getting consensus in participating nodes only. Use R3, Hyperledger Fabric or enterprise ethereum if you don't want to leave solidity and web3. Go through this link to understand how you can use Ethereum for private purpose [Enterprise Eth](https://consensys.net/enterprise-ethereum/best-blockchain-for-business/5-reasons-why-enterprise-ethereum-is-so-much-more-than-a-distributed-ledger-technology/)
+
  * If you are intrested in deployement of app on IPFS, [See this](https://medium.com/ethereum-developers/the-ultimate-end-to-end-tutorial-to-create-and-deploy-a-fully-descentralized-dapp-in-ethereum-18f0cf6d7e0e)
  
 ### If you have any queries: Mail me [abhivispute33@gmail.com]
