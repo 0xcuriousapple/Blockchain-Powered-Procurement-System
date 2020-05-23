@@ -8,7 +8,7 @@ A)procurement from Indian/Overseas vendor B)Shipping C) Transportation in interm
 The implementation should use Open source technologies like Ethereum or equivalent and be able to show simple and good UI + clear documentation with out of the box thinking
 
 ## Demo/Explanatory Video: [Click me](https://www.youtube.com/watch?v=1Y5eyY-KKVw) 
-## Deployment
+## Project Live On
 To make it completely decentralized we have hosted the frontend on IPFS.
 But as IPFS is in its initial stages, the link takes too long to respond.
 So we also hosted it on central server "000webhostapp"<br />
