@@ -38,9 +38,7 @@ To see the App in action <br />
   * If you want to see smart contracts for reference, I have added folder of smart contracts in repo, but it doesnt have any connection with project. I deployed smart contarts using remix on test network and called it by address using web3.js.
 
 ### Advice If you are building your own dApp
- * Use Skelton solidity code snippets for various concepts [Click me](https://github.com/abhishekvispute/SolidityCodeSnippets)
- * Use truffle as a framework if possible, it makes development/testing/deployment easy
- * Ethereum takes time, for tx to get finalized even for test network as its public blockchain. Dont use public blockchain, if the main purpose of your DApp is getting consensus in participating nodes only. Use R3, Hyperledger Fabric or Enterprise ethereum. If you don't want to leave solidity and web3 use Enterprise Eth. Go through [Enterprise Eth](https://consensys.net/enterprise-ethereum/best-blockchain-for-business/5-reasons-why-enterprise-ethereum-is-so-much-more-than-a-distributed-ledger-technology/)
-
- * If you are intrested in deployement of app on IPFS, [See this](https://medium.com/ethereum-developers/the-ultimate-end-to-end-tutorial-to-create-and-deploy-a-fully-descentralized-dapp-in-ethereum-18f0cf6d7e0e)
- 
+* Use truffle as a framework if possible, it makes development/testing/deployment easy
+* Ethereum takes time, for tx to get finalized even for test network as its public blockchain. Dont use public blockchain, if the main purpose of your DApp is getting consensus in participating nodes only. Use R3, Hyperledger Fabric or Enterprise ethereum. If you don't want to leave solidity and web3 use [Enterprise Ethereum](https://consensys.net/enterprise-ethereum/best-blockchain-for-business/5-reasons-why-enterprise-ethereum-is-so-much-more-than-a-distributed-ledger-technology/)
+* If you are intrested in deployement of app on IPFS, [See this](https://medium.com/ethereum-developers/the-ultimate-end-to-end-tutorial-to-create-and-deploy-a-fully-descentralized-dapp-in-ethereum-18f0cf6d7e0e)
+* Use Skelton solidity code snippets [Click me](https://github.com/abhishekvispute/SolidityCodeSnippets)
